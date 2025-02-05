@@ -28,14 +28,7 @@
           font-weight: bold;
       }
     </style>
-    <div
-      style="
-        position: relative;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-      "
-    >
+    <div style="position: relative; display: flex; justify-content: center; align-items: center;">
       <div id="middle-circle">0%</div>
       <div id="progress-spinner"></div>
     </div>
@@ -47,7 +40,7 @@
       this.attachShadow({ mode: "open" });
       this.shadowRoot.appendChild(template.content.cloneNode(true));
       this._props = {
-        percentage: 0, // Default Percentage
+        percentage: 75, // Default
         barColor: "#03ff4f",
         emptyBarColor: "#ededed"
       };
@@ -55,7 +48,7 @@
 
     connectedCallback() {
       this.initMain();
-      this.updateFromDataBinding(); // New Method to Fetch Data
+      this.updateFromDataModel(); // Fetch data dynamically
     }
 
     async initMain() {
@@ -76,17 +69,27 @@
       }, 20);
     }
 
-    // Fetch percentage from SAC model dynamically
-    updateFromDataBinding() {
+    // Method to fetch data from SAC model
+    updateFromDataModel() {
       if (this.dataBinding) {
         this.dataBinding.onDataChanged((data) => {
           if (data && data.length > 0) {
-            let newValue = data[0].value; // Get First Data Point
-            this._props.percentage = newValue;
-            this.initMain(); // Re-render with New Value
+            let newValue = data[0].value; // Get first data point
+            this.setValue(newValue);
           }
         });
       }
+    }
+
+    // Method to set progress value dynamically
+    setValue(value) {
+      this._props.percentage = value;
+      this.initMain(); // Re-render with new value
+    }
+
+    // Method to get the current value
+    getValue() {
+      return this._props.percentage;
     }
 
     onCustomWidgetBeforeUpdate(changedProperties) {
@@ -98,5 +101,5 @@
     }
   }
 
-  customElements.define("com-rohitchouhan-sap-circleprogressbarwidget", Widget);
+  customElements.define("com-pmuraz-sap-circleprogressbarwidget", Widget);
 })();

@@ -1,8 +1,8 @@
 {
     "id": "com-pmuraz-sap-circleprogressbarwidget",
-    "version": "1.0.1",
+    "version": "1.0.2",
     "name": "Circle Progress Bar Widget",
-    "description": "SAC Custom Widget to add beautiful and animated circle progress bar in SAP Analytics Cloud Application",
+    "description": "SAC Custom Widget to add a beautiful and animated circle progress bar in SAP Analytics Cloud",
     "newInstancePrefix": "CircleProgressBarWidget",
     "vendor": "pmuraz",
     "eula": "",
@@ -29,13 +29,6 @@
             "description": "Percentage (Manual Input)",
             "type": "integer",
             "default": 75
-        },
-        "dataPercentage": {
-            "description": "Percentage (From Model)",
-            "type": "integer",
-            "binding": {
-                "type": "measure"
-            }
         },
         "barColor": {
             "description": "Bar Color",
